@@ -12,6 +12,15 @@ SECRET_KEY = "super-secret-un-key-change-this-in-production"
 ALGORITHM = "HS256"
 TOKEN_EXPIRATION_MINUTES = 30
 
+
+@app.get("/")
+def health_check():
+    return {
+        "service": "SovereignID IAM Engine",
+        "status": "ok",
+        "message": "Use /docs for API documentation and /auth/login for authentication.",
+    }
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 MOCK_ROLES_DB = {
     "Field_Worker": {"clearance_level": 1},
