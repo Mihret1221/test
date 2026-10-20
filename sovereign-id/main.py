@@ -17,22 +17,6 @@ MOCK_ROLES_DB = {
     "Field_Worker": {"clearance_level": 1},
     "HQ_Admin": {"clearance_level": 3},
 }
-MOCK_USER_DB = {
-    "field_worker": {
-        "username": "field_worker",
-        "email": "field_worker@example.com",
-        "password_hash": hash_password("user123"),
-        "role": "Field_Worker",
-        "clearance": MOCK_ROLES_DB["Field_Worker"]["clearance_level"],
-    },
-    "hq_admin": {
-        "username": "hq_admin",
-        "email": "admin@example.com",
-        "password_hash": hash_password("admin123"),
-        "role": "HQ_Admin",
-        "clearance": MOCK_ROLES_DB["HQ_Admin"]["clearance_level"],
-    },
-}
 
 
 # --- DATA SCHEMAS & HELPERS ---
@@ -54,6 +38,24 @@ def hash_password(password: str) -> str:
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
+
+
+MOCK_USER_DB = {
+    "field_worker": {
+        "username": "field_worker",
+        "email": "field_worker@example.com",
+        "password_hash": hash_password("user123"),
+        "role": "Field_Worker",
+        "clearance": MOCK_ROLES_DB["Field_Worker"]["clearance_level"],
+    },
+    "hq_admin": {
+        "username": "hq_admin",
+        "email": "admin@example.com",
+        "password_hash": hash_password("admin123"),
+        "role": "HQ_Admin",
+        "clearance": MOCK_ROLES_DB["HQ_Admin"]["clearance_level"],
+    },
+}
 
 
 def create_access_token(data: dict) -> str:
